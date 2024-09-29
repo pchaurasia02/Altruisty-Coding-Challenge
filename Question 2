@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(int n, string str){
+    vector<int> freq(26, 0);
+    for(int i=0;i<str.length();i++){
+        if(str[i] >= 'A' && str[i] <= 'Z'){
+            freq[str[i]-'A']++;
+        }else if(str[i] >= 'a' && str[i] <= 'z'){
+            freq[str[i]-'a']++;
+        }
+    }
+    for(int i=0;i<n;i++){
+        if(freq[str[i]-'a']%2!=0){
+            cout<<str[i]<<endl;
+            return;
+        }
+    }
+    cout<<"All are even"<<endl;
+}
+
+int main(){
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    solve(n, s);
+}

@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(vector<int>& oxygenLevel) {
+    vector<double> avg(3, 0);
+    for(int i=0;i<3;i++){
+        avg[i]=(oxygenLevel[i]+oxygenLevel[i+3]+oxygenLevel[i+6])/3.0; 
+    }
+    double maxi=-1;
+    for(int i=0;i<3;i++){
+        maxi=max(maxi, avg[i]); 
+    }
+    bool found=false;
+    for(int i=0;i<3;i++) {
+        if(avg[i]==maxi && avg[i]>=70){
+            cout<<"Trainee Number : "<<i+1<<endl;
+            found=true;
+        }
+    }
+    if(!found){
+        cout<<"All trainees are unfit"<<endl;
+    }
+}
+
+int main() {
+    vector<int> oxygenLevel(9, 0);
+    for(int i=0;i<9;i++){
+        cin>>oxygenLevel[i];
+        if(oxygenLevel[i]<1 || oxygenLevel[i]>100){
+            cout<<"INVALID INPUT"<<endl;
+            return 0;
+        }
+    }
+    solve(oxygenLevel);
+}
